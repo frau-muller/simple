@@ -70,3 +70,16 @@ class Chips:
 
     def lose_bet(self):
         self.total -= self.bet
+
+def take_bet(chips):
+
+    while True:
+        try:
+            chips.bet = int(input('Сколько фишек вы хотите поставить? '))
+        except ValueError:
+            print('Извините, ставка должна быть целым числом!')
+        else:
+            if chips.bet > chips.total:
+                print("К сожалению, ваша ставка не может превышать", chips.total)
+            else:
+                break
