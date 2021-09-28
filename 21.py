@@ -83,3 +83,27 @@ def take_bet(chips):
                 print("К сожалению, ваша ставка не может превышать", chips.total)
             else:
                 break
+
+def hit(deck, hand):
+
+    hand.add_card(deck.deal())
+    hand.adjust_for_ace()
+
+
+def hit_or_stand(deck, hand):
+    global playing
+
+    while True:
+        x = input("Хотите походить или остановиться? Enter 'h' or 's' ")
+
+        if x[0].lower() == 'h':
+            hit(deck, hand)
+
+        elif x[0].lower() == 's':
+            print("Игрок пас.Дилерр играет")
+            playing = False
+
+        else:
+            print("Извините, пожалуйста, попробуйте еще раз.")
+            continue
+        break
