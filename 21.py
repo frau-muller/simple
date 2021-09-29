@@ -107,3 +107,40 @@ def hit_or_stand(deck, hand):
             print("Извините, пожалуйста, попробуйте еще раз.")
             continue
         break
+
+def show_some(player, dealer):
+    print("\nDealer's Hand:")
+    print(" <card hidden>")
+    print('', dealer.cards[1])
+    print("\nPlayer's Hand:", *player.cards, sep='\n ')
+
+
+def show_all(player, dealer):
+    print("\nDealer's Hand:", *dealer.cards, sep='\n ')
+    print("Dealer's Hand =", dealer.value)
+    print("\nPlayer's Hand:", *player.cards, sep='\n ')
+    print("Player's Hand =", player.value)
+
+
+def player_busts(player, dealer, chips):
+    print("Игрок банкрот!")
+    chips.lose_bet()
+
+
+def player_wins(player, dealer, chips):
+    print("Игрок выиграл")
+    chips.win_bet()
+
+
+def dealer_busts(player, dealer, chips):
+    print("Диллер банкрот")
+    chips.win_bet()
+
+
+def dealer_wins(player, dealer, chips):
+    print("Диллер !выиграл")
+    chips.lose_bet()
+
+
+def push(player, dealer):
+    print("Дилер и игрок вничью!.")
