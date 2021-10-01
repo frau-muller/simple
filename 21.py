@@ -144,3 +144,28 @@ def dealer_wins(player, dealer, chips):
 
 def push(player, dealer):
     print("Дилер и игрок вничью!.")
+
+
+while True:
+    print('Добро пожаловать в BlackJack! ')
+
+    # Создаем и перетасуем колоду, раздайте ем две карты каждому игроку
+    deck = Deck()
+    deck.shuffle()
+
+    player_hand = Hand()
+    player_hand.add_card(deck.deal())
+    player_hand.add_card(deck.deal())
+
+    dealer_hand = Hand()
+    dealer_hand.add_card(deck.deal())
+    dealer_hand.add_card(deck.deal())
+
+    # настройка фишек
+    player_chips = Chips()  # значение по-умолчанию 100
+
+    # Предложение сделать ставку
+    take_bet(player_chips)
+
+    # показ карт,но одна карта диллера скрыта
+    show_some(player_hand, dealer_hand)
