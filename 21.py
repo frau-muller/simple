@@ -169,3 +169,48 @@ while True:
 
     # показ карт,но одна карта диллера скрыта
     show_some(player_hand, dealer_hand)
+
+    while playing:  # переменная из hit_or_stand функции
+
+        hit_or_stand(deck, player_hand)
+
+        # вскрываем карты
+        show_some(player_hand, dealer_hand)
+
+        # если у игрока больше 21
+        if player_hand.value > 21:
+            player_busts(player_hand, dealer_hand, player_chips)
+            break
+
+    if player_hand.value <= 21:
+
+        while dealer_hand.value < 17:
+            hit(deck, dealer_hand)
+
+        # вскрываем все карты
+        show_all(player_hand, dealer_hand)
+
+        if dealer_hand.value > 21:
+            dealer_busts(player_hand, dealer_hand, player_chips)
+
+        elif dealer_hand.value > player_hand.value:
+            dealer_wins(player_hand, dealer_hand, player_chips)
+
+        elif dealer_hand.value < player_hand.value:
+            player_wins(player_hand, dealer_hand, player_chips)
+
+        else:
+            push(player_hand, dealer_hand)
+
+        # информирование игрока о количестве очков
+    print("\Выигрыш игрока составляет", player_chips.total)
+
+    # спрашиваем о новой игре
+    new_game = input("Хотите сыграть еще одну партию? Enter 'y' or 'n' ")
+
+    if new_game[0].lower() == 'y':
+        playing = True
+        continue
+    else:
+        print("Спасибо за игру!")
+        break
